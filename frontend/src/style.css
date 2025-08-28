@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+#mainDiv{
+    height: 300px;
+    /* background-color: rgb(195, 195, 195); */
+    margin: 1em auto;
+    text-align: center;
+}
+
+h2{
+    margin: 1em 0;  
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: inline-block;  
+}
+
+#pasteFileArea{
+    border: 2px dashed black;
+    border-radius: 15px;
+    font-size: 1.2em;
+    box-sizing:border-box;
+    margin: auto;  
+}
+
+#container{
+    display: flex; 
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+
+@media only screen and (min-width: 770px) and (max-width: 1920px){
+    #pasteFileArea{
+        width: 770px;
+        height: 200px;
+    }
+    
+    #submitToEncrypt{
+        width: 180px;
+    }
+  }
