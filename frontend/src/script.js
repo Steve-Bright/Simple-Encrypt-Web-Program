@@ -1,19 +1,22 @@
 let pasteArea = document.getElementById("pasteFileArea")
+let containerDiv = document.getElementById("container")
 let areaEntered = false;
-pasteArea.addEventListener("dragenter", (e) => {
+containerDiv.addEventListener("dragenter", (e) => {
     // alert("heriaewjf")
-    if( (e.target.id == "pasteFileArea" || e.target.closest(".childDiv") ) && areaEntered == false){
+    if( (e.target.id == "container" || e.target.closest(".childDiv") ) && areaEntered == false){
         console.log("it is entered bitch ")
+        createHoverArea(containerDiv)
         areaEntered = true;
     }
     // createHoverArea(pasteArea)
 })
 
-pasteArea.addEventListener("dragleave", (e) => {
-    console.log("event target ?? " + e.target.id )
-    if((e.target.id == "pasteFileArea") && areaEntered == true){
+containerDiv.addEventListener("dragleave", (e) => {
+    // console.log("event target ?? " + e.target.id )
+    if((!containerDiv.contains(e.relatedTarget)) && areaEntered == true){
         console.warn("i begg you. please leave " + e.target.innerHTML)
         areaEntered = false;
+        buildDefaultArea(containerDiv)
     }
     // alert("build shit ")
     // buildDefaultArea(pasteArea)
@@ -22,16 +25,13 @@ pasteArea.addEventListener("dragleave", (e) => {
 function createHoverArea(parentDiv){
     parentDiv.innerHTML = ""
     let hoveredDiv = document.createElement('div')
-    hoveredDiv.id = "hoveredArea"
+    hoveredDiv.classList.add("hoveredArea")
     hoveredDiv.innerHTML = "Release your file here."
     parentDiv.appendChild(hoveredDiv)
 }
 
 function buildDefaultArea(parentDiv){
     parentDiv.innerHTML = ""
-    const container = document.createElement('div');
-    container.id = 'container';
-
     const dragTextDiv = document.createElement('div');
     dragTextDiv.textContent = 'Drag your files here';
 
@@ -44,10 +44,8 @@ function buildDefaultArea(parentDiv){
     fileInput.id = 'submitToEncrypt';
     inputDiv.appendChild(fileInput);
 
-    container.appendChild(dragTextDiv);
-    container.appendChild(orDiv);
-    container.appendChild(inputDiv);
-
-    parentDiv.appendChild(container)
+    parentDiv.appendChild(dragTextDiv);
+    parentDiv.appendChild(orDiv);
+    parentDiv.appendChild(inputDiv)
 
 }
